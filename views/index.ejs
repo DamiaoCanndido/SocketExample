@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="" id="word">
+    <button onclick="send()">Enviar</button>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+<script>
+    var socket = io("http://localhost:3000");
+    socket.emit("Welcome", {name: "Nergal"});
+
+    function send() {
+        var input = document.getElementById("word");
+        console.log(input.value);
+        socket.emit("word", input.value);
+    }
+</script>
+</html>
