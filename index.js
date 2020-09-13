@@ -10,6 +10,7 @@ io.on("connection", (socket) => {
 
     socket.on("word", (data) => {
         console.log(data);
+        socket.emit("result", data+"Programming")
     })
 });
 

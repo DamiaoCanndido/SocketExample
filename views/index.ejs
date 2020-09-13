@@ -6,13 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" name="" id="word">
-    <button onclick="send()">Enviar</button>
+    <input type="text" name="" id="word" oninput="send()">
+    <button onclick="">Enviar</button>
+    <hr>
+    <p id="result"></p>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script>
     var socket = io("http://localhost:3000");
-    socket.emit("Welcome", {name: "Nergal"});
+    socket.emit("Welcome", {name: "Damião"});
+
+    socket.on("result", (data) => {
+        console.log(data)
+
+        var p = document.getElementById("result")
+        p.innerHTML = data;
+    })
 
     function send() {
         var input = document.getElementById("word");
