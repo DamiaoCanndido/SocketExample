@@ -6,27 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="text" name="" id="word" oninput="send()">
-    <button onclick="">Enviar</button>
-    <hr>
-    <p id="result"></p>
+    <h1>Chat</h1>
+    <div id="chat">
+
+    </div>
+    <br>
+    <input type="text" name="" id="msg">
+    <br>
+    <input type="text" name="" id="username" placeholder="Seu nome de usuário">
+    <button>Enviar</button>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 <script>
     var socket = io("http://localhost:3000");
-    socket.emit("Welcome", {name: "Damião"});
 
-    socket.on("result", (data) => {
-        console.log(data)
+    socket.on("disconnect", () => {
+        console.log("Desconectado!");
+    });
 
-        var p = document.getElementById("result")
-        p.innerHTML = data;
-    })
-
-    function send() {
-        var input = document.getElementById("word");
-        console.log(input.value);
-        socket.emit("word", input.value);
-    }
 </script>
 </html>

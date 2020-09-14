@@ -4,14 +4,11 @@ const http = require("http").createServer(app);
 const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
-    socket.on("Welcome", (data) => {
-        console.log(data);
-    });
 
-    socket.on("word", (data) => {
-        console.log(data);
-        socket.emit("result", data+"Programming")
-    })
+    socket.on("disconnect", () => {
+        console.log("Usuário "+socket.id+" se desconectou.")
+    });
+    
 });
 
 app.set("view engine", "ejs");
